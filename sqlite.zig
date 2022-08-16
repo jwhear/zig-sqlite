@@ -7,11 +7,11 @@ const io = std.io;
 const mem = std.mem;
 const testing = std.testing;
 
-const c = @import("c.zig").c;
+pub const c = @import("c.zig").c;
 
 pub const ParsedQuery = @import("query.zig").ParsedQuery;
 
-const errors = @import("errors.zig");
+pub const errors = @import("errors.zig");
 pub const errorFromResultCode = errors.errorFromResultCode;
 pub const Error = errors.Error;
 pub const DetailedError = errors.DetailedError;
@@ -1775,7 +1775,7 @@ pub const DynamicStatement = struct {
     // Both will bind correctly.
     //
     // If however there are no name bind markers then the behaviour will revert to using the field index in the struct, and the fields order must be correct.
-    fn bind(self: *Self, options: anytype, values: anytype) !void {
+    pub fn bind(self: *Self, options: anytype, values: anytype) !void {
         const Type = @TypeOf(values);
 
         switch (@typeInfo(Type)) {
